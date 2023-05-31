@@ -51,7 +51,7 @@ class Settings(BaseSettings):
     jwt_access_token_expire_minutes: int
 
     class Config:
-        env_file = '.env'
+        env_file = f"{os.getenv('ENV_ABSOLUTE_PATH')}/.env" if os.getenv('ENV_ABSOLUTE_PATH') else '.env'
         env_file_encoding = 'utf-8'
         env_nested_delimiter = '__'
 

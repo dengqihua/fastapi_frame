@@ -51,9 +51,12 @@
 
 # 运行脚本
 
-### 设置当前项目的路径
+### 设置环境变量
 ```shell
+    # 当前项目根路径加入到模块的搜索路径
     export PYTHONPATH="D:\python\fastapi_frame"
+    # 指定.env文件的路径
+    export ENV_ABSOLUTE_PATH="D:\python\fastapi_frame"
 ```
      
 ### 执行脚本
@@ -89,3 +92,20 @@ CREATE TABLE `user` (
 ```
 
 - 登录采用JWT方式，token保存到redis，请修改redis相关配置
+
+### 实用脚本
+
+- 根据数据库表结构，自动生成model、manager文件
+```shell
+    
+    python app/script/auto_create_model.py -h 
+    
+    # usage: auto_create_model.py [-h] [--table TABLE] [--databse DATABSE] [--force FORCE]
+    # 根据数据库表结构，自动生成model、manager文件
+    # options:
+    #   -h, --help         show this help message and exit
+    #   --table TABLE      表名，默认值：*，代表全部表, 举例：--table=user
+    #   --databse DATABSE  数据库名称，默认值：test，如：--databse=test
+    #   --force FORCE      是否强制覆盖已存在的文件，默认值：0，参数解释：0 不覆盖，1 强制覆盖
+
+```

@@ -12,6 +12,9 @@ from datetime import datetime
 from tortoise import Tortoise
 from app.config.setting import settings
 
+current_dir_path = os.path.dirname(os.path.abspath(__file__))
+app_dir_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 class AutoCreateModelHandle:
 
@@ -152,7 +155,7 @@ class AutoCreateModelHandle:
         """
         写入模型目录的__init__文件
         """
-        model_file_path = '../models/'
+        model_file_path = f'{app_dir_path}/models/'
         model_init_content = ''
         for root, dirs, files in os.walk(model_file_path):
             for file in files:
@@ -160,22 +163,22 @@ class AutoCreateModelHandle:
                     file_name = file.split('.py')[0]
                     model_init_content += f'from .{file_name} import * \n'
 
-        model_file_path = '../models/__init__.py'
+        model_file_path = f'{app_dir_path}/models/__init__.py'
         with open(model_file_path, 'w', encoding='utf-8') as f:
             f.write(model_init_content)
 
         print('写入模型目录的__init__.py文件成功！')
 
     async def write_model_file(self, tpl_dict, table_name):
-        """将model模板内容替换后写入model文件"""
+        """ 将model模板内容替换后写入model文件 """
         model_file_name = f'{table_name}_model'
-        model_file_path = f'../models/{model_file_name}.py'
+        model_file_path = f'{app_dir_path}/models/{model_file_name}.py'
 
         # 如果文件存在，但不强制覆盖，则跳过执行
         if os.path.exists(model_file_path) and self.force == 0:
             return None
 
-        model_tpl_file_path = './tpl/model_template.tpl'
+        model_tpl_file_path = f'{current_dir_path}/tpl/model_template.tpl'
         with open(model_tpl_file_path, encoding='utf-8') as f:
             model_tpl_content = f.read()
 
@@ -189,13 +192,13 @@ class AutoCreateModelHandle:
     async def write_manager_file(self, tpl_dict, table_name):
         """ 将manager模板内容替换后写入manager文件  """
         manager_file_name = f'{table_name}_manager'
-        manager_file_path = f'../managers/{manager_file_name}.py'
+        manager_file_path = f'{app_dir_path}/managers/{manager_file_name}.py'
 
         # 如果文件存在，但不强制覆盖，则跳过执行
         if os.path.exists(manager_file_path) and self.force == 0:
             return None
 
-        manager_tpl_file_path = 'tpl/manager_template.tpl'
+        manager_tpl_file_path = f'{current_dir_path}/tpl/manager_template.tpl'
         with open(manager_tpl_file_path, encoding='utf-8') as f:
             manager_tpl_content = f.read()
 
