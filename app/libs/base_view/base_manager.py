@@ -327,7 +327,6 @@ class BaseManager(object):
         check_res = map(lambda x: x in sql.lower(), self.danger_keywords)
         if any(list(check_res)):
             raise DangerOperation(check_res, sql)
-        # TODO: try catch, execute_many[Optional], execute_script[Optional]
         con = self.model_cls.db_conn()
         res = await con.execute_query(sql)
         return res
