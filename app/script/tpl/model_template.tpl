@@ -1,0 +1,1 @@
+# _*_ coding: utf-8 _*_# @创建时间：{now_date}# @作者：dengqihua# @名称 : {table_name}_model.py# @描述 : {model_description}from tortoise import fieldsfrom app.libs.base_view.base_model import CheckingModelclass {pascal_case_table_name}(CheckingModel):{fields_str}    class Meta:        table = '{table_name}'
