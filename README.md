@@ -37,6 +37,12 @@
     export APP_FASTAPI_FRAME_WORKERS=5
 ```
 
+### 创建.env文件
+```shell
+    cp .env_dev .env
+```
+ 根据自己信息，修改相关配置
+
 ### 执行命令
 ```shell
     python run.py
