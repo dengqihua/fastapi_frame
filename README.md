@@ -44,10 +44,6 @@
     
 
 # 运行脚本
-### 设置.env文件绝对路径的环境变量
-```shell
-    export ENV_ABSOLUTE_PATH="D:\python\fastapi_frame" 
-```
 
 ### 设置当前项目的路径
 ```shell
