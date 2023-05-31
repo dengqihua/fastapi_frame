@@ -65,8 +65,8 @@
 ```
 
 
-# 自动生成的交互式 API 文档
-http://127.0.0.1:9001/docs
+# 交互式API文档
+http://127.0.0.1:9002/docs
 
 
 # 实战
@@ -108,4 +108,55 @@ CREATE TABLE `user` (
     #   --databse DATABSE  数据库名称，默认值：test，如：--databse=test
     #   --force FORCE      是否强制覆盖已存在的文件，默认值：0，参数解释：0 不覆盖，1 强制覆盖
 
+```
+
+
+### 目录结构说明
+```shell
+
+app 应用目录
+  |-- config  配置目录
+    |-- setting.py  读取.env文件的全局配置文件
+  |-- constants   常量目录
+    |-- enums.py    枚举常量文件
+    |-- redis_key.py  redis的key文件
+  |-- ctx 上下文目录
+    |-- app_ctx.py   app上下文
+  |-- dependencies.py   
+  |-- libs    类库目录
+    |-- base_view  框架基础类库
+    |-- cache   缓存目录
+      |-- redis.py    redis缓存文件
+    |-- common.py   公共文件
+    |-- const.py    常量文件
+    |-- decorators.py   装饰器文件
+    |-- dependency.py   依赖性文件
+    |-- exception.py    自定义异常处理类文件
+    |-- response.py     响应文件
+    |-- time_helper.py  时间工具函数
+    |-- utils.py        工具类文件
+  |-- logic  逻辑处理层
+    |-- user_logic.py
+  |-- managers  业务处理层
+    |-- user_manager.py
+  |-- models  模型层
+    |-- user_model.py
+  |-- routers  路由层
+    |-- auth  认证路由
+      |-- api
+        |-- auth_api.py
+      |-- request_model
+        |-- auth_in.py
+      |-- response_model
+        |-- auth_out.py
+  |-- script 脚本目录
+    |-- auto_create_model.py
+    |-- test.py
+    |-- tpl
+      |-- manager_template.tpl
+      |-- model_template.tpl
+run.py    启动文件
+requirements.txt
+.env_dev  开发环境环境变量文件
+.env_pro  生产环境环境变量文件
 ```
